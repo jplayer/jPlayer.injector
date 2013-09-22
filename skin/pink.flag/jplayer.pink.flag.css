@@ -22,7 +22,7 @@ div.jp-video {
 	 * Eg. 1.25em = 1 / 0.8em
 	 */
 
-	font-size:1.25em; /* 1.25em for testing in site pages */ /* No parent CSS that can effect the size in the demos ZIP */
+	font-size:1em; /* 1.25em for testing in site pages */ /* No parent CSS that can effect the size in the demos ZIP */
 
 	font-family:Verdana, Arial, sans-serif;
 	line-height:1.6;
