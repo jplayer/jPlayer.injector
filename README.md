@@ -2,7 +2,9 @@
 
 Injects jPlayer's skin HTML and instantiates the plugin.
 
-Inspired by [Nathan Loyer's](https://github.com/namlet) project: [jPlayer-Autofill](https://github.com/namlet/jPlayer-Autofill).
+*Inspired by [Nathan Loyer's](https://github.com/namlet) project: [jPlayer-Autofill](https://github.com/namlet/jPlayer-Autofill).*
+
+**This README is considered WIP during this development phase.**
 
 Original readme...
 
