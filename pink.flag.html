@@ -18,7 +18,13 @@
 <script type="text/javascript" src="lib/jquery.jplayer.js"></script>
 <script type="text/javascript" src="js/jplayer.injector.js"></script>
 <script type="text/javascript">
-	jPlayerInjector(".video", "skin/pink.flag/jplayer.pink.flag.video.html");
+	jPlayerInjector({
+		selector: ".video",
+		template: "skin/pink.flag/jplayer.pink.flag.video.html",
+		jPlayer: {
+			swfPath: "lib"
+		}
+	});
 </script>
 </body>
 </html>
