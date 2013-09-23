@@ -6,6 +6,26 @@ Injects jPlayer's skin HTML and instantiates the plugin.
 
 **This README is considered WIP during this development phase.**
 
+
+```
+jPlayerInjector({
+	selector: ".classname",
+	template: "path/to/template.html",
+	pauseOthers: true, // Stop multiple instances playing
+	marker: { // RegExp of markers
+		jPlayer: /::JPLAYER::/,
+		cssSelectorAncestor: /::WRAPPER::/,
+		title: /::TITLE::/
+	},
+	prefix: { // Prefix of IDs
+		jPlayer: "jquery_jplayer_",
+		cssSelectorAncestor: "jp_container_"
+	},
+	jPlayer: {} // jPlayer options
+});
+```
+
+
 Original readme...
 
 #jPlayer Autofiller - automate the creation of needed HTML and unique IDs for jPlayer videos
