@@ -11,6 +11,7 @@
 ```html
 <script type="text/javascript" src="jplayer.injector.js"></script>
 ```
+
 * Insert the HTML tags where you want the media to appear as follows:
 ```html
 <div
@@ -20,6 +21,7 @@
 	data-title="Movie Title">
 </div>
 ```
+
 * Call *injector* from JavaScript:
 ```javascript
 jPlayerInjector({
@@ -38,6 +40,7 @@ jPlayerInjector({
 	jPlayer: {} // jPlayer options
 });
 ```
+
 * Typically, you will call *injector* fron within a jQuery ready function:
 ```javascript
 $(document).ready(function() {
@@ -47,6 +50,7 @@ $(document).ready(function() {
 	});
 });
 ```
+
 * Example code is given in the root HTML files, and are of the form:
 ```html
 <!DOCTYPE html>
@@ -55,7 +59,6 @@ $(document).ready(function() {
 	<meta charset="utf-8" />
 	<title>My Sweet Music</title>
 	<link href="skin/pink.flag/jplayer.pink.flag.css" rel="stylesheet" type="text/css" />
-
 	<script type="text/javascript" src="lib/jquery-1.10.2.js"></script>
 	<script type="text/javascript" src="lib/jquery.jplayer.js"></script>
 	<script type="text/javascript" src="js/jplayer.injector.js"></script>
@@ -72,14 +75,12 @@ $(document).ready(function() {
 	</script>
 </head>
 <body>
-
 	<div
 		class="audio"
 		data-mp3="http://www.jplayer.org/audio/mp3/Miaow-07-Bubble.mp3"
 		data-oga="http://www.jplayer.org/audio/ogg/Miaow-07-Bubble.ogg"
 		data-title="Bubble">
 	</div>
-
 </body>
 </html>
 ```
