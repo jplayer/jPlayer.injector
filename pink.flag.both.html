@@ -28,10 +28,22 @@
 </div>
 
 <div
+	class="audio"
+	data-mp3="http://www.jplayer.org/audio/mp3/Miaow-02-Hidden.mp3"
+	data-title="Hidden">
+</div>
+
+<div
 	class="video"
 	data-m4v="http://www.jplayer.org/video/m4v/Incredibles_Teaser.m4v"
 	data-poster="http://www.jplayer.org/video/poster/Incredibles_Teaser_640x272.png"
 	data-title="Incredibles Teaser">
+</div>
+
+<div
+	class="audio"
+	data-mp3="http://www.jplayer.org/audio/mp3/Miaow-04-Lismore.mp3"
+	data-title="Lismore">
 </div>
 
 <script type="text/javascript" src="lib/jquery-1.10.2.js"></script>
@@ -44,6 +56,11 @@
 		template: "skin/pink.flag/jplayer.pink.flag.video.html",
 		jPlayer: {
 			swfPath: "lib"
+		},
+		// Extra options due to using jPlayer.injector multiple times.
+		prefix: {
+			jPlayer: "jplayer_video_",
+			cssSelectorAncestor: "jp_video_container_"
 		}
 	});
 	// Inject Audios
@@ -52,6 +69,11 @@
 		template: "skin/pink.flag/jplayer.pink.flag.audio.html",
 		jPlayer: {
 			swfPath: "lib"
+		},
+		// Extra options due to using jPlayer.injector multiple times.
+		prefix: {
+			jPlayer: "jplayer_audio_",
+			cssSelectorAncestor: "jp_audio_container_"
 		}
 	});
 </script>
