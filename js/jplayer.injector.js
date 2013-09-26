@@ -1,6 +1,6 @@
 var jPlayerInjector = (function($) {
 
-	var DEBUG = true;
+	var DEBUG = false;
 
 	return function(options) {
 
