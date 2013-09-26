@@ -4,6 +4,40 @@
 	<meta charset="utf-8" />
 	<title>jPlayer Injector Demo: Pink Flag</title>
 	<link href="skin/pink.flag/jplayer.pink.flag.css" rel="stylesheet" type="text/css" />
+
+	<script type="text/javascript" src="lib/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="lib/jquery.jplayer.js"></script>
+	<script type="text/javascript" src="js/jplayer.injector.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			// Inject Videos
+			jPlayerInjector({
+				selector: ".video",
+				template: "skin/pink.flag/jplayer.pink.flag.video.html",
+				jPlayer: {
+					swfPath: "lib"
+				},
+				// Extra options due to using jPlayer.injector multiple times.
+				prefix: {
+					jPlayer: "jplayer_video_",
+					cssSelectorAncestor: "jp_video_container_"
+				}
+			});
+			// Inject Audios
+			jPlayerInjector({
+				selector: ".audio",
+				template: "skin/pink.flag/jplayer.pink.flag.audio.html",
+				jPlayer: {
+					swfPath: "lib"
+				},
+				// Extra options due to using jPlayer.injector multiple times.
+				prefix: {
+					jPlayer: "jplayer_audio_",
+					cssSelectorAncestor: "jp_audio_container_"
+				}
+			});
+		});
+	</script>
 </head>
 <body>
 
@@ -46,36 +80,5 @@
 	data-title="Lismore">
 </div>
 
-<script type="text/javascript" src="lib/jquery-1.10.2.js"></script>
-<script type="text/javascript" src="lib/jquery.jplayer.js"></script>
-<script type="text/javascript" src="js/jplayer.injector.js"></script>
-<script type="text/javascript">
-	// Inject Videos
-	jPlayerInjector({
-		selector: ".video",
-		template: "skin/pink.flag/jplayer.pink.flag.video.html",
-		jPlayer: {
-			swfPath: "lib"
-		},
-		// Extra options due to using jPlayer.injector multiple times.
-		prefix: {
-			jPlayer: "jplayer_video_",
-			cssSelectorAncestor: "jp_video_container_"
-		}
-	});
-	// Inject Audios
-	jPlayerInjector({
-		selector: ".audio",
-		template: "skin/pink.flag/jplayer.pink.flag.audio.html",
-		jPlayer: {
-			swfPath: "lib"
-		},
-		// Extra options due to using jPlayer.injector multiple times.
-		prefix: {
-			jPlayer: "jplayer_audio_",
-			cssSelectorAncestor: "jp_audio_container_"
-		}
-	});
-</script>
 </body>
 </html>
