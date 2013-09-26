@@ -1,6 +1,6 @@
 var jPlayerInjector = (function($) {
 
-	var DEBUG = "mofo";
+	var DEBUG = true;
 
 	return function(options) {
 
