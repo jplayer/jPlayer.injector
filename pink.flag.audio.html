@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>jPlayer Injector Demo: Pink Flag</title>
+	<link href="skin/pink.flag/jplayer.pink.flag.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<div
+	class="audio"
+	data-mp3="http://www.jplayer.org/audio/mp3/Miaow-07-Bubble.mp3"
+	data-title="Bubble">
+</div>
+
+<div
+	class="audio"
+	data-mp3="http://www.jplayer.org/audio/mp3/Miaow-02-Hidden.mp3"
+	data-title="Hidden">
+</div>
+
+<div
+	class="audio"
+	data-mp3="http://www.jplayer.org/audio/mp3/Miaow-04-Lismore.mp3"
+	data-title="Lismore">
+</div>
+
+<script type="text/javascript" src="lib/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="lib/jquery.jplayer.js"></script>
+<script type="text/javascript" src="js/jplayer.injector.js"></script>
+<script type="text/javascript">
+	jPlayerInjector({
+		selector: ".audio",
+		template: "skin/pink.flag/jplayer.pink.flag.audio.html",
+		jPlayer: {
+			swfPath: "lib"
+		}
+	});
+</script>
+</body>
+</html>
