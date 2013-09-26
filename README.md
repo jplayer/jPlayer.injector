@@ -8,18 +8,20 @@
 
 ##To use *injector*
 * Include *injector* files after jPlayer:
-```<script type="text/javascript" src="jplayer.injector.js"></script>```
-* Insert the HTML tags where you want the media to appear as follows:
+```html
+<script type="text/javascript" src="jplayer.injector.js"></script>
 ```
+* Insert the HTML tags where you want the media to appear as follows:
+```html
 <div
 	class="video"
 	data-mp3="path/to/video.mp3"
 	data-poster="path/to/image.png"
-	data-title="Crazy Movie">
+	data-title="Movie Title">
 </div>
 ```
 * Call *injector* from JavaScript:
-```
+```javascript
 jPlayerInjector({
 	selector: ".classname",
 	template: "path/to/template.html",
@@ -37,7 +39,7 @@ jPlayerInjector({
 });
 ```
 * Typically, you will call *injector* fron within a jQuery ready function:
-```
+```javascript
 $(document).ready(function() {
 	jPlayerInjector({
 		selector: ".audio",
@@ -46,7 +48,7 @@ $(document).ready(function() {
 });
 ```
 * Example code is given in the root HTML files, and are of the form:
-```
+```html
 <!DOCTYPE html>
 <html>
 <head>
