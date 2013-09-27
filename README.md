@@ -110,14 +110,14 @@ The essential formats and optional formats follow those available to jPlayer.
 
 But you can add them using:
 ```html
-	<div
-		class="video"
-		data-m4v="http://jplayer.org/video/m4v/Big_Buck_Bunny_Trailer.m4v"
-		data-ogv="http://jplayer.org/video/ogv/Big_Buck_Bunny_Trailer.ogv"
-		data-webmv="http://jplayer.org/video/webm/Big_Buck_Bunny_Trailer.webm"
-		data-poster="http://jplayer.org/video/poster/Big_Buck_Bunny_Trailer_480x270.png"
-		data-title="Big Buck Bunny Trailer">
-	</div>
+<div
+	class="video"
+	data-m4v="http://jplayer.org/video/m4v/Big_Buck_Bunny_Trailer.m4v"
+	data-ogv="http://jplayer.org/video/ogv/Big_Buck_Bunny_Trailer.ogv"
+	data-webmv="http://jplayer.org/video/webm/Big_Buck_Bunny_Trailer.webm"
+	data-poster="http://jplayer.org/video/poster/Big_Buck_Bunny_Trailer_480x270.png"
+	data-title="Big Buck Bunny Trailer">
+</div>
 ```
 
 Note: Need to enable the jPlayer supplied option and given or automatic.
