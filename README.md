@@ -26,6 +26,14 @@
 ```javascript
 	jPlayerInjector({
 		selector: ".classname",
+		template: "path/to/template.html"
+	});
+```
+
+* The *injector* has many options:
+```javascript
+	jPlayerInjector({
+		selector: ".classname",
 		template: "path/to/template.html",
 		pauseOthers: true, // Stop multiple instances playing
 		marker: { // RegExp of markers
@@ -41,7 +49,7 @@
 	});
 ```
 
-* Typically, you will call *injector* fron within a jQuery ready function:
+* Typically, you will call *injector* from within a jQuery ready function:
 ```javascript
 	$(document).ready(function() {
 		jPlayerInjector({
@@ -84,3 +92,32 @@
 	</body>
 </html>
 ```
+
+##FAQ
+
+###Why does my template not work?
+There could be many reason, so consider:
+* Check the markers in the template match the injector's defaults or the options you set.
+* Check that you included the skin's CSS in your page.
+* Check you included jQuery and jPlayer in your page.
+* Check you only included jQuery once.
+* Check that your template is on the same domain.
+* Look in the browser console and see if there are any error messages.
+
+###How do I specify multiple formats to satisfy HTML5 browsers?
+These day you only tend to need either: MP3, M4A or M4V.
+The essential formats and optional formats follow those available to jPlayer.
+
+But you can add them using:
+```html
+	<div
+		class="video"
+		data-m4v="http://jplayer.org/video/m4v/Big_Buck_Bunny_Trailer.m4v"
+		data-ogv="http://jplayer.org/video/ogv/Big_Buck_Bunny_Trailer.ogv"
+		data-webmv="http://jplayer.org/video/webm/Big_Buck_Bunny_Trailer.webm"
+		data-poster="http://jplayer.org/video/poster/Big_Buck_Bunny_Trailer_480x270.png"
+		data-title="Big Buck Bunny Trailer">
+	</div>
+```
+
+Note: Need to enable the jPlayer supplied option and given or automatic.
