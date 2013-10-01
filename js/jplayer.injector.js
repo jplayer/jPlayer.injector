@@ -7,8 +7,8 @@
  * http://opensource.org/licenses/MIT
  *
  * Author: Mark J Panaghiston
- * Version: 0.0.1
- * Date: 26th September 2013
+ * Version: 0.1.0
+ * Date: 1st October 2013
  */
 
 /* Code verified using http://www.jshint.com/ */
@@ -25,8 +25,6 @@ var jPlayerInjector = (function($) {
 
 	return function(options) {
 
-		if(DEBUG) console.log('options (set): %o', options);
-
 		options = $.extend(true, {
 			selector: ".jplayer-injector",
 			template: "skin/pink.flag/jplayer.pink.flag.audio.html",
@@ -40,16 +38,8 @@ var jPlayerInjector = (function($) {
 				jPlayer: "jquery_jplayer_",
 				cssSelectorAncestor: "jp_container_"
 			},
-			jPlayer: {
-				// solution: "flash, html",
-				// supplied: "m4v",
-				// swfPath: "js"
-			}
+			jPlayer: {}
 		}, options);
-
-		if(DEBUG) console.log('options (used): %o', options);
-
-		// This call gets the template file, and then modifies it for each instance of jplayer
 
 		// Get the template HTML
 		$.get(options.template, function(template) {
