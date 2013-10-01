@@ -1,0 +1,20 @@
+{
+	"name": "jplayer.injector",
+	"version": "0.1.0",
+	"description": "Injects jPlayer's skin HTML and instantiates the plugin.",
+	"homepage": "http://jplayer.org",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/happyworm/jPlayer.injector.git"
+	},
+	"keywords": [
+		"audio",
+		"video",
+		"jplayer"
+	],
+	"author": "Mark Panaghiston <markp@happyworm.com> (http://happyworm.com)",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/happyworm/jPlayer.injector/issues"
+	}
+}
