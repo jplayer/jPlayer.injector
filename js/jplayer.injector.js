@@ -84,19 +84,19 @@ var jPlayerInjector = (function($) {
 					},
 					supplied =
 						// Audio codecs
-						(media.mp3 ? "mp3," : "") +
-						(media.m4a ? "m4a," : "") +
-						(media.oga ? "oga," : "") +
+						(media.rtmpa ? "rtmpa," : "") +
+						(media.fla ? "fla," : "") +
 						(media.wav ? "wav," : "") +
 						(media.webma ? "webma," : "") +
-						(media.fla ? "fla," : "") +
-						(media.rtmpa ? "rtmpa," : "") +
+						(media.oga ? "oga," : "") +
+						(media.m4a ? "m4a," : "") + // Essential or mp3
+						(media.mp3 ? "mp3," : "") + // Essential or m4a
 						// Video codecs
-						(media.m4v ? "m4v," : "") +
-						(media.ogv ? "ogv," : "") +
-						(media.webmv ? "webmv," : "") +
+						(media.rtmpv ? "rtmpv," : "") +
 						(media.flv ? "flv," : "") +
-						(media.rtmpv ? "rtmpv," : ""),
+						(media.webmv ? "webmv," : "") +
+						(media.ogv ? "ogv," : "") +
+						(media.m4v ? "m4v," : ""), // Essential
 					jPlayerOptions = $.extend({}, options.jPlayer, {
 						ready: function () {
 							$(this).jPlayer("setMedia", media);
