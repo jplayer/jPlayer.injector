@@ -62,21 +62,23 @@ var jPlayerInjector = (function($) {
 				if(DEBUG) console.log('injecting: %s #%d', options.selector, index);
 
 				var $this = $(this),
-					media = {
+					media = { // Grouped by type (audio/video), but ordered with essential last.
 						// Audio codecs
-						mp3: $this.data("mp3"),
-						m4a: $this.data("m4a"),
-						oga: $this.data("oga"),
+						rtmpa: $this.data("rtmpa"),
+						fla: $this.data("fla"),
 						wav: $this.data("wav"),
 						webma: $this.data("webma"),
-						fla: $this.data("fla"),
-						rtmpa: $this.data("rtmpa"),
+						oga: $this.data("oga"),
+						m4a: $this.data("m4a"), // Essential or mp3
+						mp3: $this.data("mp3"), // Essential or m4a
+
 						// Video codecs
-						m4v: $this.data("m4v"),
-						ogv: $this.data("ogv"),
-						webmv: $this.data("webmv"),
-						flv: $this.data("flv"),
 						rtmpv: $this.data("rtmpv"),
+						flv: $this.data("flv"),
+						webmv: $this.data("webmv"),
+						ogv: $this.data("ogv"),
+						m4v: $this.data("m4v"), // Essential
+
 						// Poster
 						poster: $this.data("poster")
 					},
