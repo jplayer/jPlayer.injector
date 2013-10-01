@@ -102,7 +102,7 @@ var jPlayerInjector = (function($) {
 							$(this).jPlayer("setMedia", media);
 						},
 						cssSelectorAncestor: "#" + options.prefix.cssSelectorAncestor + index,
-						supplied: supplied
+						supplied: options.jPlayer.supplied ? options.jPlayer.supplied : supplied
 					}),
 					impression = "";
 
@@ -119,7 +119,7 @@ var jPlayerInjector = (function($) {
 				$this.html(impression);
 
 				if(DEBUG) console.log('media#%d: %o', index, media);
-				if(DEBUG) console.log('supplied#%d: %o', index, supplied);
+				if(DEBUG) console.log('supplied#%d: %s', index, jPlayerOptions.supplied);
 				if(DEBUG) console.log('jPlayerOptions#%d: %o', index, jPlayerOptions);
 
 				// Instance jPlayer
