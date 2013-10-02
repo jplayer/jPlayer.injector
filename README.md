@@ -7,9 +7,14 @@
 *Inspired by [Nathan Loyer's](https://github.com/namlet) project: [jPlayer-Autofill](https://github.com/namlet/jPlayer-Autofill).*
 
 ##To use *injector*
+* Include the skin CCS files:
+```html
+	<link href="skin/pink.flag/jplayer.pink.flag.css" rel="stylesheet" type="text/css" />
+```
+
 * Include *injector* files after jPlayer:
 ```html
-	<script type="text/javascript" src="jplayer.injector.js"></script>
+	<script type="text/javascript" src="js/jplayer.injector.js"></script>
 ```
 
 * Insert the HTML tags where you want the media to appear as follows:
@@ -97,6 +102,7 @@
 
 ###Why does my template not work?
 There could be many reason, so consider:
+* Check the selector matches the class name you used.
 * Check the markers in the template match the injector's defaults or the options you set.
 * Check that you included the skin's CSS in your page.
 * Check you included jQuery and jPlayer in your page.
@@ -105,10 +111,10 @@ There could be many reason, so consider:
 * Look in the browser console and see if there are any error messages.
 
 ###How do I specify multiple formats to satisfy HTML5 browsers?
-These day you only tend to need either: MP3, M4A or M4V.
-The essential formats and optional formats follow those available to jPlayer.
+These days you tend to only need either **MP3** or **M4A** for audio and **M4V** for video.
+The [essential formats](http://jplayer.org/latest/developer-guide/#jPlayer-essential-formats) and optional counterpart formats follow those detailed in the [jPlayer dev guide](http://jplayer.org/latest/developer-guide/).
 
-But you can add them using:
+You can add them using:
 ```html
 <div
 	class="video"
@@ -120,4 +126,6 @@ But you can add them using:
 </div>
 ```
 
-Note: Need to enable the jPlayer supplied option and given or automatic.
+###Why is the JavaScript in 2 places?
+That is purely to distinguish between the JavaScript being developed in this project and those that are part of other projects.
+The *jPlayer.injector* code is in the `js` folder, while the external JavaScript libraries are in the `lib` folder.
