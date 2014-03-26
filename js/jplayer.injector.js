@@ -107,7 +107,7 @@ var jPlayerInjector = (function($) {
 				impression = impression.replace(options.marker.cssSelectorAncestor, options.prefix.cssSelectorAncestor + index);
 				impression = impression.replace(options.marker.title, $this.data("title"));
 				//$this.html(impression);
-				$this[0].outerHTML = impression;
+				$this.replaceWith(impression);
 
 				if(DEBUG) console.log('media#%d: %o', index, media);
 				if(DEBUG) console.log('supplied#%d: %s', index, jPlayerOptions.supplied);
