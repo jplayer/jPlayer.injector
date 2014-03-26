@@ -129,3 +129,9 @@ You can add them using:
 ###Why is the JavaScript in 2 places?
 That is purely to distinguish between the JavaScript being developed in this project and those that are part of other projects.
 The *jPlayer.injector* code is in the `js` folder, while the external JavaScript libraries are in the `lib` folder.
+
+###This project does not work with jPlayer 2.5.0
+Yes that is a problem.
+During the development of jPlayer, a bug slipped in at jPlayer 2.4.2 that conflicted with this project.
+This bug was fixed in jplayer 2.5.4 and it has been updated in this project.
+(Or to the latest jPlayer version since 2.5.4)
