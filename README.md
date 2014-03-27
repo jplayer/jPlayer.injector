@@ -7,7 +7,7 @@
 *Inspired by [Nathan Loyer's](https://github.com/namlet) project: [jPlayer-Autofill](https://github.com/namlet/jPlayer-Autofill).*
 
 ##To use *injector*
-* Include the skin CCS files:
+* Include the skin CSS files:
 ```html
 	<link href="skin/pink.flag/jplayer.pink.flag.css" rel="stylesheet" type="text/css" />
 ```
