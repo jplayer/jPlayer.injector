@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>jPlayer Injector Demo: Blue Monday</title>
+	<link href="skin/blue.monday/jplayer.blue.monday.css" rel="stylesheet" type="text/css" />
+
+	<script type="text/javascript" src="lib/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="lib/jquery.jplayer.js"></script>
+	<script type="text/javascript" src="js/jplayer.injector.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			jPlayerInjector({
+				selector: ".audio",
+				template: "skin/blue.monday/jplayer.blue.monday.audio.html",
+				jPlayer: {
+					swfPath: "lib"
+				}
+			});
+		});
+	</script>
+</head>
+<body>
+
+<div
+	class="audio"
+	data-mp3="http://www.jplayer.org/audio/mp3/Miaow-07-Bubble.mp3"
+	data-title="Bubble (mp3)">
+</div>
+
+<div
+	class="audio"
+	data-mp3="http://www.jplayer.org/audio/mp3/Miaow-02-Hidden.mp3"
+	data-oga="http://www.jplayer.org/audio/ogg/Miaow-02-Hidden.ogg"
+	data-title="Hidden (oga/mp3)">
+</div>
+
+<div
+	class="audio"
+	data-m4a="http://www.jplayer.org/audio/m4a/Miaow-04-Lismore.m4a"
+	data-title="Lismore (m4a)">
+</div>
+
+</body>
+</html>
