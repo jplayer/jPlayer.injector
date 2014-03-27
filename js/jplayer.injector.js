@@ -21,12 +21,12 @@ var jPlayerInjector = (function($) {
 
 	"use strict";
 
-	var DEBUG = false;
+	var DEBUG = true;
 
 	return function(options) {
 
 		options = $.extend(true, {
-			selector: ".jplayer-injector",
+			selector: "audio, video",
 			template: "skin/pink.flag/jplayer.pink.flag.audio.html",
 			pauseOthers: true,
 			marker: {
@@ -51,26 +51,32 @@ var jPlayerInjector = (function($) {
 
 				if(DEBUG) console.log('injecting: %s #%d', options.selector, index);
 
+				if(DEBUG) console.log("src = "+ $(this).attr('src'));
+
 				var $this = $(this),
+					filename = $this.attr('src'),
+					extension = filename.split('.').pop(),
 					media = { // Grouped by type (audio/video), but ordered with essential last.
 						// Audio codecs
-						rtmpa: $this.data("rtmpa"),
-						fla: $this.data("fla"),
-						wav: $this.data("wav"),
-						webma: $this.data("webma"),
-						oga: $this.data("oga"),
-						m4a: $this.data("m4a"), // Essential or mp3
-						mp3: $this.data("mp3"), // Essential or m4a
+						rtmpa: (extension == "rtmpa" ? filename : ""),
+						fla: (extension == "fla" ? filename : ""),
+						wav: (extension == "wav" ? filename : ""),
+						webma: (extension == "webma" ? filename : ""),
+						oga: (extension == "oga" ? filename : ""),
+						m4a: (extension == "m4a" ? filename : ""), // Essential or mp3
+						mp3: (extension == "mp3" ? filename : ""), // Essential or m4a
 
 						// Video codecs
-						rtmpv: $this.data("rtmpv"),
-						flv: $this.data("flv"),
-						webmv: $this.data("webmv"),
-						ogv: $this.data("ogv"),
-						m4v: $this.data("m4v"), // Essential
+						rtmpv: (extension == "rtmpv" ? filename : ""),
+						flv: (extension == "flv" ? filename : ""),
+						webmv: (extension == "webmv" ? filename : ""),
+						ogv: (extension == "ogv" ? filename : ""),
+						m4v: (extension == "m4v" ? filename : ""), // Essential
 
 						// Poster
 						poster: $this.data("poster")
+
+
 					},
 					supplied =
 						// Audio codecs
@@ -109,6 +115,7 @@ var jPlayerInjector = (function($) {
 				//$this.html(impression);
 				$this.replaceWith(impression);
 
+				if(DEBUG) console.log('extension', options.template);
 				if(DEBUG) console.log('media#%d: %o', index, media);
 				if(DEBUG) console.log('supplied#%d: %s', index, jPlayerOptions.supplied);
 				if(DEBUG) console.log('jPlayerOptions#%d: %o', index, jPlayerOptions);
