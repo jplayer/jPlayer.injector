@@ -54,24 +54,26 @@ var jPlayerInjector = (function($) {
 				if(DEBUG) console.log("src = "+ $(this).attr('src'));
 
 				var $this = $(this),
+					tagname = $this.prop('tagName'),
+					type = $this.attr('type') ? $this.attr('type').replace(" ","") : "",
 					filename = $this.attr('src'),
 					extension = filename.split('.').pop(),
 					media = { // Grouped by type (audio/video), but ordered with essential last.
 						// Audio codecs
-						rtmpa: (extension == "rtmpa" ? filename : ""),
-						fla: (extension == "fla" ? filename : ""),
-						wav: (extension == "wav" ? filename : ""),
-						webma: (extension == "webma" ? filename : ""),
-						oga: (extension == "oga" ? filename : ""),
-						m4a: (extension == "m4a" ? filename : ""), // Essential or mp3
-						mp3: (extension == "mp3" ? filename : ""), // Essential or m4a
+						rtmpa: (tagname =="AUDIO" && (extension == "rtmpa" || extension == "rtmp") ? filename: ""),
+						fla: (tagname =="AUDIO" && extension == "fla" ? filename: ""),
+						wav: (tagname =="AUDIO" && (type == "audio/wav" || extension == "wav") ? filename: ""),
+						webma: (tagname =="AUDIO" && (type == "audio/webm" || extension == "webma" || extension == "webm") ? filename: ""),
+						oga: (tagname =="AUDIO" && (type == "audio/ogg" || extension == "oga" || extension == "ogg") ? filename: ""),
+						m4a: (tagname =="AUDIO" && (type == "audio/mp4" || extension == "m4a" || extension == "mp4") ? filename: ""),
+						mp3: (tagname =="AUDIO" && (type == "audio/mpeg" || extension == "mp3") ? filename: ""),
 
 						// Video codecs
-						rtmpv: (extension == "rtmpv" ? filename : ""),
-						flv: (extension == "flv" ? filename : ""),
-						webmv: (extension == "webmv" ? filename : ""),
-						ogv: (extension == "ogv" ? filename : ""),
-						m4v: (extension == "m4v" ? filename : ""), // Essential
+						rtmpa: (tagname =="VIDEO" && (extension == "rtmpv" || extension == "rtmp") ? filename: ""),
+						flv: (tagname =="VIDEO" && extension == "flv" ? filename: ""),
+						webmv: (tagname =="VIDEO" && (type == "video/webm" || extension == "webmv" || extension == "webm") ? filename: ""),
+						ogv: (tagname =="VIDEO" && (type == "video/ogg" || extension == "ogv" || extension == "ogg") ? filename: ""),
+						m4v: (tagname =="VIDEO" && (type == "video/mp4" || extension == "m4v" || extension == "mp4") ? filename: ""), // Essential
 
 						// Poster
 						poster: $this.data("poster")
@@ -114,6 +116,8 @@ var jPlayerInjector = (function($) {
 				impression = impression.replace(options.marker.title, $this.data("title"));
 				//$this.html(impression);
 				$this.replaceWith(impression);
+
+				if(DEBUG) console.log('tagname', tagname);
 
 				if(DEBUG) console.log('extension', options.template);
 				if(DEBUG) console.log('media#%d: %o', index, media);
