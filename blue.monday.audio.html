@@ -11,7 +11,6 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			jPlayerInjector({
-				selector: ".audio",
 				template: "skin/blue.monday/jplayer.blue.monday.audio.html",
 				jPlayer: {
 					swfPath: "lib"
@@ -22,24 +21,14 @@
 </head>
 <body>
 
-<div
-	class="audio"
-	data-mp3="http://www.jplayer.org/audio/mp3/Miaow-07-Bubble.mp3"
-	data-title="Bubble (mp3)">
-</div>
+<audio src="http://www.jplayer.org/audio/mp3/Miaow-07-Bubble.mp3" data-title="Bubble (mp3)"></audio>
 
-<div
-	class="audio"
-	data-mp3="http://www.jplayer.org/audio/mp3/Miaow-02-Hidden.mp3"
-	data-oga="http://www.jplayer.org/audio/ogg/Miaow-02-Hidden.ogg"
-	data-title="Hidden (oga/mp3)">
-</div>
+<audio data-title="Hidden (mp3)">
+	<source src="http://www.jplayer.org/audio/mp3/Miaow-02-Hidden.mp3"></source>
+	<source src="http://www.jplayer.org/audio/m4a/Miaow-04-Lismore.m4a"></source>
+</audio>
 
-<div
-	class="audio"
-	data-m4a="http://www.jplayer.org/audio/m4a/Miaow-04-Lismore.m4a"
-	data-title="Lismore (m4a)">
-</div>
+<audio src="http://www.jplayer.org/audio/m4a/Miaow-04-Lismore.m4a" type="audio/mp4" data-title="Lismore (m4a)"></audio>
 
 </body>
 </html>

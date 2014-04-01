@@ -30,9 +30,9 @@ var jPlayerInjector = (function($) {
 			template: "skin/pink.flag/jplayer.pink.flag.audio.html",
 			pauseOthers: true,
 			marker: {
-				jPlayer: /::JPLAYER::/,
-				cssSelectorAncestor: /::WRAPPER::/,
-				title: /::TITLE::/
+				jPlayer: /{{JPLAYER}}/,
+				cssSelectorAncestor: /{{WRAPPER}}/,
+				title: /{{TITLE}}/
 			},
 			prefix: {
 				jPlayer: "jquery_jplayer_",
@@ -56,10 +56,10 @@ var jPlayerInjector = (function($) {
 				var mediaList = [];
 
 				// Todo : remove repeated code here
-				var media = {src:$(this).attr("src"),type:$(this).attr("type")};
+				var media = {src:$this.attr("src"),type:$this.attr("type")};
 				if (media) mediaList.push(media);
 
-				$(this).children("source").map(function(){
+				$this.children("source").map(function(){
 					media={src:$(this).attr("src"),type:$(this).attr("type")};
 					if (media) mediaList.push(media);
 				});
@@ -98,7 +98,7 @@ var jPlayerInjector = (function($) {
 						m4v:   assignMedia("video","video/mp4",["m4v","mp4"]),
 
 						// Poster
-						poster: $this.data("poster")
+						poster: $this.attr("poster")
 					},
 					supplied =
 						// Audio codecs
