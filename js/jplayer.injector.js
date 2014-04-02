@@ -98,7 +98,11 @@ var jPlayerInjector = (function($) {
 						m4v:   assignMedia("video","video/mp4",["m4v","mp4"]),
 
 						// Poster
-						poster: $this.attr("poster")
+						poster: $this.attr("poster"),
+
+						// Details
+						title: $this.attr("title"),
+						duration: $this.data("duration")
 					},
 					supplied =
 						// Audio codecs
