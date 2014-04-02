@@ -2,13 +2,13 @@
  * jPlayer Injector
  * http://www.jplayer.org
  *
- * Copyright (c) 2013 Happyworm Ltd
+ * Copyright (c) 2013 - 2014 Happyworm Ltd
  * Licensed under the MIT license.
  * http://opensource.org/licenses/MIT
  *
  * Author: Mark J Panaghiston
- * Version: 0.1.0
- * Date: 1st October 2013
+ * Version: 0.2.0
+ * Date: 2nd April 2014
  */
 
 /* Code verified using http://www.jshint.com/ */
@@ -31,8 +31,7 @@ var jPlayerInjector = (function($) {
 			pauseOthers: true,
 			marker: {
 				jPlayer: /{{JPLAYER}}/,
-				cssSelectorAncestor: /{{WRAPPER}}/,
-				title: /{{TITLE}}/
+				cssSelectorAncestor: /{{WRAPPER}}/
 			},
 			prefix: {
 				jPlayer: "jquery_jplayer_",
@@ -137,7 +136,6 @@ var jPlayerInjector = (function($) {
 				// Switch the markers with the values for this instance.
 				impression = template.replace(options.marker.jPlayer, options.prefix.jPlayer + index);
 				impression = impression.replace(options.marker.cssSelectorAncestor, options.prefix.cssSelectorAncestor + index);
-				impression = impression.replace(options.marker.title, $this.data("title"));
 
 				$this.replaceWith(impression);
 
