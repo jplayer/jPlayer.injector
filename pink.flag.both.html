@@ -12,6 +12,7 @@
 		$(document).ready(function() {
 			// Inject Videos
 			jPlayerInjector({
+				selector: "video",
 				template: "skin/pink.flag/jplayer.pink.flag.video.html",
 				jPlayer: {
 					swfPath: "lib"
@@ -24,6 +25,7 @@
 			});
 			// Inject Audios
 			jPlayerInjector({
+				selector: "audio",
 				template: "skin/pink.flag/jplayer.pink.flag.audio.html",
 				jPlayer: {
 					swfPath: "lib"
