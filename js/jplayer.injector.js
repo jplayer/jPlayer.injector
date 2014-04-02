@@ -39,7 +39,9 @@ var jPlayerInjector = (function($) {
 				jPlayer: "jquery_jplayer_",
 				cssSelectorAncestor: "jp_container_"
 			},
-			jPlayer: {}
+			jPlayer: {
+				toggleDuration: true
+			}
 		}, options);
 
 		var index = 0;
@@ -113,7 +115,7 @@ var jPlayerInjector = (function($) {
 					(media.webmv ? "webmv," : "") +
 					(media.ogv ? "ogv," : "") +
 					(media.m4v ? "m4v," : ""), // Essential
-				jPlayerOptions = $.extend({}, options.jPlayer, {
+				jPlayerOptions = $.extend(true, {}, options.jPlayer, {
 					ready: function () {
 						$(this).jPlayer("setMedia", media);
 					},
