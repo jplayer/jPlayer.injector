@@ -40,13 +40,15 @@ var jPlayerInjector = (function($) {
 			jPlayer: {}
 		}, options);
 
+		var $selector = $(options.selector).hide();
+
 		// Get the template HTML
 		$.get(options.template, function(template) {
 
 			if(DEBUG) console.log('loaded: %s', options.template);
 
 			// Iterate through each selector instance
-			$(options.selector).each(function(index) {
+			$selector.each(function(index) {
 
 				var $this = $(this);
 
