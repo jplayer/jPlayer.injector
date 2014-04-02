@@ -26,8 +26,10 @@ var jPlayerInjector = (function($) {
 	return function(options) {
 
 		options = $.extend(true, {
-			selector: "audio, video",
-			template: "skin/pink.flag/jplayer.pink.flag.audio.html",
+			template: {
+				audio: "skin/pink.flag/jplayer.pink.flag.audio.html",
+				video: "skin/pink.flag/jplayer.pink.flag.video.html"
+			},
 			pauseOthers: true,
 			marker: {
 				jPlayer: /{{JPLAYER}}/,
@@ -40,116 +42,129 @@ var jPlayerInjector = (function($) {
 			jPlayer: {}
 		}, options);
 
-		var $selector = $(options.selector).hide();
+		var index = 0;
+		var parse = function($this, template) {
 
-		// Get the template HTML
-		$.get(options.template, function(template) {
+			if(DEBUG) console.log('injecting: %s #%d', $this.prop('tagName'), index);
 
-			if(DEBUG) console.log('loaded: %s', options.template);
+			var mediaList = [];
 
-			// Iterate through each selector instance
-			$selector.each(function(index) {
+			// Todo : remove repeated code here
+			var media = {src:$this.attr("src"),type:$this.attr("type")};
+			if (media) mediaList.push(media);
 
-				var $this = $(this);
-
-				if(DEBUG) console.log('injecting: %s #%d', options.selector, index);
-
-				var mediaList = [];
-
-				// Todo : remove repeated code here
-				var media = {src:$this.attr("src"),type:$this.attr("type")};
+			$this.children("source").map(function(){
+				media={src:$(this).attr("src"),type:$(this).attr("type")};
 				if (media) mediaList.push(media);
+			});
 
-				$this.children("source").map(function(){
-					media={src:$(this).attr("src"),type:$(this).attr("type")};
-					if (media) mediaList.push(media);
-				});
+			var assignMedia = function(tagType, mimeType, variants) {
+				var assign = "";
+				if ($this.prop('tagName').toLowerCase() == tagType) {
 
-				var assignMedia = function(tagType, mimeType, variants) {
-					var assign = "";
-					if ($this.prop('tagName').toLowerCase() == tagType) {
+					for (var i=0; i < mediaList.length; i++) {
+						var filename = mediaList[i].src;
+						var extension = filename ? filename.split('.').pop() : "";
 
-						for (var i=0; i < mediaList.length; i++) {
-							var filename = mediaList[i].src;
-							var extension = filename ? filename.split('.').pop() : "";
-
-							if ((mediaList[i].type && mediaList[i].type.toLowerCase().replace(" ","") == mimeType) || (variants.indexOf(extension) >= 0)) {
-								assign = filename;
-							}
+						if ((mediaList[i].type && mediaList[i].type.toLowerCase().replace(" ","") == mimeType) || (variants.indexOf(extension) >= 0)) {
+							assign = filename;
 						}
 					}
-					return assign;
-				};
-
-				var media = { // Grouped by type (audio/video), but ordered with essential last.
-						// Audio codecs
-						rtmpa: assignMedia("audio","",["rtmpa,rtmp"]),
-						fla:   assignMedia("audio","",["fla"]),
-						wav:   assignMedia("audio","audio/wav",["wav"]),
-						webma: assignMedia("audio","audio/webm",["webma","webm"]),
-						oga:   assignMedia("audio","audio/ogg",["oga","ogg"]),
-						m4a:   assignMedia("audio","audio/mp4",["m4a","mp4"]),
-						mp3:   assignMedia("audio","audio/mpeg",["mp3"]),
-
-						// Video codecs
-						rtmpv: assignMedia("video","",["rtmpv,rtmp"]),
-						flv:   assignMedia("video","",["flv"]),
-						webmv: assignMedia("video","video/webm",["webmv","webm"]),
-						ogv:   assignMedia("video","video/ogg",["oqv","ogg"]),
-						m4v:   assignMedia("video","video/mp4",["m4v","mp4"]),
-
-						// Poster
-						poster: $this.attr("poster"),
-
-						// Details
-						title: $this.attr("title"),
-						duration: $this.data("duration")
-					},
-					supplied =
-						// Audio codecs
-						(media.rtmpa ? "rtmpa," : "") +
-						(media.fla ? "fla," : "") +
-						(media.wav ? "wav," : "") +
-						(media.webma ? "webma," : "") +
-						(media.oga ? "oga," : "") +
-						(media.m4a ? "m4a," : "") + // Essential or mp3
-						(media.mp3 ? "mp3," : "") + // Essential or m4a
-						// Video codecs
-						(media.rtmpv ? "rtmpv," : "") +
-						(media.flv ? "flv," : "") +
-						(media.webmv ? "webmv," : "") +
-						(media.ogv ? "ogv," : "") +
-						(media.m4v ? "m4v," : ""), // Essential
-					jPlayerOptions = $.extend({}, options.jPlayer, {
-						ready: function () {
-							$(this).jPlayer("setMedia", media);
-						},
-						cssSelectorAncestor: "#" + options.prefix.cssSelectorAncestor + index,
-						supplied: options.jPlayer.supplied ? options.jPlayer.supplied : supplied
-					}),
-					impression = "";
-
-				if(options.pauseOthers) {
-					jPlayerOptions.play = function() {
-						$(this).jPlayer("pauseOthers");
-					};
 				}
+				return assign;
+			};
 
-				// Switch the markers with the values for this instance.
-				impression = template.replace(options.marker.jPlayer, options.prefix.jPlayer + index);
-				impression = impression.replace(options.marker.cssSelectorAncestor, options.prefix.cssSelectorAncestor + index);
+			var media = { // Grouped by type (audio/video), but ordered with essential last.
+					// Audio codecs
+					rtmpa: assignMedia("audio","",["rtmpa,rtmp"]),
+					fla:   assignMedia("audio","",["fla"]),
+					wav:   assignMedia("audio","audio/wav",["wav"]),
+					webma: assignMedia("audio","audio/webm",["webma","webm"]),
+					oga:   assignMedia("audio","audio/ogg",["oga","ogg"]),
+					m4a:   assignMedia("audio","audio/mp4",["m4a","mp4"]),
+					mp3:   assignMedia("audio","audio/mpeg",["mp3"]),
 
-				$this.replaceWith(impression);
+					// Video codecs
+					rtmpv: assignMedia("video","",["rtmpv,rtmp"]),
+					flv:   assignMedia("video","",["flv"]),
+					webmv: assignMedia("video","video/webm",["webmv","webm"]),
+					ogv:   assignMedia("video","video/ogg",["oqv","ogg"]),
+					m4v:   assignMedia("video","video/mp4",["m4v","mp4"]),
 
-				if(DEBUG) console.log('media#%d: %o', index, media);
-				if(DEBUG) console.log('supplied#%d: %s', index, jPlayerOptions.supplied);
-				if(DEBUG) console.log('jPlayerOptions#%d: %o', index, jPlayerOptions);
+					// Poster
+					poster: $this.attr("poster"),
 
-				// Instance jPlayer
-				$("#" + options.prefix.jPlayer + index).each(function() {
-					$(this).jPlayer(jPlayerOptions);
-				});
+					// Details
+					title: $this.attr("title"),
+					duration: $this.data("duration")
+				},
+				supplied =
+					// Audio codecs
+					(media.rtmpa ? "rtmpa," : "") +
+					(media.fla ? "fla," : "") +
+					(media.wav ? "wav," : "") +
+					(media.webma ? "webma," : "") +
+					(media.oga ? "oga," : "") +
+					(media.m4a ? "m4a," : "") + // Essential or mp3
+					(media.mp3 ? "mp3," : "") + // Essential or m4a
+					// Video codecs
+					(media.rtmpv ? "rtmpv," : "") +
+					(media.flv ? "flv," : "") +
+					(media.webmv ? "webmv," : "") +
+					(media.ogv ? "ogv," : "") +
+					(media.m4v ? "m4v," : ""), // Essential
+				jPlayerOptions = $.extend({}, options.jPlayer, {
+					ready: function () {
+						$(this).jPlayer("setMedia", media);
+					},
+					cssSelectorAncestor: "#" + options.prefix.cssSelectorAncestor + index,
+					supplied: options.jPlayer.supplied ? options.jPlayer.supplied : supplied
+				}),
+				impression = "";
+
+			if(options.pauseOthers) {
+				jPlayerOptions.play = function() {
+					$(this).jPlayer("pauseOthers");
+				};
+			}
+
+			// Switch the markers with the values for this instance.
+			impression = template.replace(options.marker.jPlayer, options.prefix.jPlayer + index);
+			impression = impression.replace(options.marker.cssSelectorAncestor, options.prefix.cssSelectorAncestor + index);
+
+			$this.replaceWith(impression);
+
+			if(DEBUG) console.log('media#%d: %o', index, media);
+			if(DEBUG) console.log('supplied#%d: %s', index, jPlayerOptions.supplied);
+			if(DEBUG) console.log('jPlayerOptions#%d: %o', index, jPlayerOptions);
+
+			// Instance jPlayer
+			$("#" + options.prefix.jPlayer + index).each(function() {
+				$(this).jPlayer(jPlayerOptions);
 			});
-		});
+
+			index++;
+		};
+
+		var inject = function(tagName) {
+			var $elems = $(tagName).hide();
+			// Check there are those elements to change
+			if($elems.length) {
+				// Get the template HTML
+				$.get(options.template[tagName], function(template) {
+
+					if(DEBUG) console.log('loaded: %s', options.template[tagName]);
+
+					// Iterate through each selector instance
+					$elems.each(function() {
+						parse($(this), template);
+					});
+				});
+			}
+		};
+
+		// Change the media elements
+		inject('audio');
+		inject('video');
 	};
 }(jQuery));
