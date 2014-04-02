@@ -116,19 +116,10 @@ var jPlayerInjector = (function($) {
 					(media.ogv ? "ogv," : "") +
 					(media.m4v ? "m4v," : ""), // Essential
 				jPlayerOptions = $.extend(true, {}, options.jPlayer, {
-					ready: function () {
-						$(this).jPlayer("setMedia", media);
-					},
 					cssSelectorAncestor: "#" + options.prefix.cssSelectorAncestor + index,
 					supplied: options.jPlayer.supplied ? options.jPlayer.supplied : supplied
 				}),
 				impression = "";
-
-			if(options.pauseOthers) {
-				jPlayerOptions.play = function() {
-					$(this).jPlayer("pauseOthers");
-				};
-			}
 
 			// Switch the markers with the values for this instance.
 			impression = template.replace(options.marker.jPlayer, options.prefix.jPlayer + index);
@@ -140,10 +131,23 @@ var jPlayerInjector = (function($) {
 			if(DEBUG) console.log('supplied#%d: %s', index, jPlayerOptions.supplied);
 			if(DEBUG) console.log('jPlayerOptions#%d: %o', index, jPlayerOptions);
 
-			// Instance jPlayer
-			$("#" + options.prefix.jPlayer + index).each(function() {
-				$(this).jPlayer(jPlayerOptions);
+			// Get the jPlayer selector
+			var $jplayer = $("#" + options.prefix.jPlayer + index);
+
+			// Create the ready event
+			$jplayer.bind($.jPlayer.event.ready, function() {
+				$(this).jPlayer("setMedia", media);
 			});
+
+			// Create the play event to avoid playing together.
+			if(options.pauseOthers) {
+				$jplayer.bind($.jPlayer.event.play, function() {
+					$(this).jPlayer("pauseOthers");
+				});
+			}
+
+			// Instance jPlayer
+			$jplayer.jPlayer(jPlayerOptions);
 
 			index++;
 		};
