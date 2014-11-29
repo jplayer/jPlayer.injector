@@ -7,8 +7,8 @@
  * http://opensource.org/licenses/MIT
  *
  * Author: Mark J Panaghiston
- * Version: 0.2.0
- * Date: 2nd April 2014
+ * Version: 0.2.1
+ * Date: 29th November 2014
  */
 
 /* Code verified using http://www.jshint.com/ */
@@ -27,8 +27,8 @@ var jPlayerInjector = (function($) {
 
 		options = $.extend(true, {
 			template: {
-				audio: "skin/pink.flag/jplayer.pink.flag.audio.html",
-				video: "skin/pink.flag/jplayer.pink.flag.video.html"
+				audio: "skin/pink.flag/mustache/jplayer.pink.flag.audio.single.html",
+				video: "skin/pink.flag/mustache/jplayer.pink.flag.video.single.html"
 			},
 			pauseOthers: true,
 			marker: {
@@ -40,6 +40,9 @@ var jPlayerInjector = (function($) {
 				cssSelectorAncestor: "jp_container_"
 			},
 			jPlayer: {
+				globalVolume: true,
+				useStateClassSkin: true,
+				autoBlur: false,
 				toggleDuration: true
 			}
 		}, options);
