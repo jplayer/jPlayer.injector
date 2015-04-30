@@ -19,12 +19,7 @@
 
 * Insert the HTML tags where you want the media to appear as follows:
 ```html
-	<div
-		class="video"
-		data-mp3="path/to/video.mp3"
-		data-poster="path/to/image.png"
-		data-title="Movie Title">
-	</div>
+	<video src="path/to/video.mp4" poster="path/to/image.png">
 ```
 
 * Call *injector* from JavaScript:
@@ -88,12 +83,10 @@
 		</script>
 	</head>
 	<body>
-		<div
-			class="audio"
-			data-mp3="http://www.jplayer.org/audio/mp3/Miaow-07-Bubble.mp3"
-			data-oga="http://www.jplayer.org/audio/ogg/Miaow-07-Bubble.ogg"
-			data-title="Bubble">
-		</div>
+		<audio title="Miaow - Bubble">
+			<source src="http://www.jplayer.org/audio/mp3/Miaow-07-Bubble.mp3">
+			<source src="http://www.jplayer.org/audio/ogg/Miaow-07-Bubble.ogg">
+		</audio>
 	</body>
 </html>
 ```
