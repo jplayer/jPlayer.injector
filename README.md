@@ -109,14 +109,12 @@ The [essential formats](http://jplayer.org/latest/developer-guide/#jPlayer-essen
 
 You can add them using:
 ```html
-<div
-	class="video"
-	data-m4v="http://jplayer.org/video/m4v/Big_Buck_Bunny_Trailer.m4v"
-	data-ogv="http://jplayer.org/video/ogv/Big_Buck_Bunny_Trailer.ogv"
-	data-webmv="http://jplayer.org/video/webm/Big_Buck_Bunny_Trailer.webm"
-	data-poster="http://jplayer.org/video/poster/Big_Buck_Bunny_Trailer_480x270.png"
-	data-title="Big Buck Bunny Trailer">
-</div>
+<video poster="http://jplayer.org/video/poster/Big_Buck_Bunny_Trailer_480x270.png">
+	<source src="http://jplayer.org/video/m4v/Big_Buck_Bunny_Trailer.m4v" type="video/mp4" />
+	<source src="http://jplayer.org/video/ogv/Big_Buck_Bunny_Trailer.ogv" type="video/ogg" />
+	<source src="http://jplayer.org/video/webm/Big_Buck_Bunny_Trailer.webm" type="video/webm" />
+</video>
+
 ```
 
 ###Why is the JavaScript in 2 places?
